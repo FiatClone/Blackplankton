@@ -1,0 +1,1840 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blue Arsenal Universe - Legendary Weapons</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Creepster&family=Nosifer&family=Butcherman&family=Metal+Mania&display=swap');
+        
+        :root {
+            --blue-darkest: #0c1445;
+            --blue-dark: #1e3a8a;
+            --blue-medium: #3b82f6;
+            --blue-light: #60a5fa;
+            --blue-lightest: #bfdbfe;
+            --black: #0a0a0a;
+            --deep-blue: #0f172a;
+            --deep-blue-light: #1e293b;
+            --cyan-dark: #0e7490;
+            --cyan-medium: #0891b2;
+            --cyan-light: #06b6d4;
+            --red-dark: #7f1d1d;
+            --red-medium: #b91c1c;
+            --red-light: #ef4444;
+            --amber-dark: #78350f;
+            --amber-medium: #b45309;
+            --amber-light: #f59e0b;
+        }
+        
+        body {
+            font-family: 'Metal Mania', cursive;
+            background-color: var(--deep-blue);
+            color: #f8f8f8;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.1) 0%, rgba(0, 0, 0, 0) 20%),
+                radial-gradient(circle at 90% 80%, rgba(96, 165, 250, 0.1) 0%, rgba(0, 0, 0, 0) 20%),
+                radial-gradient(circle at 50% 50%, rgba(30, 58, 138, 0.05) 0%, rgba(0, 0, 0, 0) 70%);
+        }
+        
+        .comic-title {
+            font-family: 'Creepster', cursive;
+            font-weight: 400;
+            color: var(--blue-light);
+            text-shadow: 3px 3px 0 var(--deep-blue),
+                         -1px -1px 0 var(--black),
+                         1px -1px 0 var(--black),
+                         -1px 1px 0 var(--black),
+                         1px 1px 0 var(--black),
+                         0 0 20px var(--blue-medium);
+            letter-spacing: 3px;
+        }
+        
+        .comic-text {
+            font-family: 'Butcherman', cursive;
+            color: white;
+            letter-spacing: 1px;
+            line-height: 1.4;
+        }
+        
+        .flicker {
+            animation: flicker 5s infinite alternate;
+        }
+        
+        @keyframes flicker {
+            0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% {
+                opacity: 0.99;
+                filter: drop-shadow(0 0 10px var(--blue-light));
+            }
+            20%, 21.999%, 63%, 63.999%, 65%, 69.999% {
+                opacity: 0.4;
+                filter: drop-shadow(0 0 5px var(--blue-dark));
+            }
+        }
+        
+        /* Character Card Styles */
+        .character-card {
+            background: linear-gradient(135deg, #0f172a, #020617);
+            border: 2px solid var(--blue-medium);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+        
+        .character-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(59, 130, 246, 0.3);
+            border-color: var(--blue-light);
+            z-index: 10;
+        }
+
+        .character-image {
+            width: 100%;
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle, #0f172a, #020617);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .character-info {
+            padding: 12px;
+            border-top: 1px solid var(--blue-medium);
+            background-color: rgba(15, 23, 42, 0.9);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .character-name {
+            font-family: 'Nosifer', cursive;
+            font-weight: 400;
+            color: var(--blue-light);
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+        }
+        
+        .character-type {
+            font-family: 'Metal Mania', cursive;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            margin-bottom: 5px;
+        }
+        
+        .character-description {
+            font-family: 'Metal Mania', cursive;
+            color: #f8f8f8;
+            font-size: 0.75rem;
+            line-height: 1.3;
+        }
+        
+        .character-rarity {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.65rem;
+            font-weight: bold;
+            color: white;
+            z-index: 5;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        /* Common rarity */
+        .rarity-common {
+            background-color: #4c1d95;
+            border: 1px solid #7e22ce;
+        }
+        
+        /* Uncommon rarity */
+        .rarity-uncommon {
+            background-color: #047857;
+            border: 1px solid #10b981;
+        }
+        
+        /* Rare rarity */
+        .rarity-rare {
+            background-color: #1d4ed8;
+            border: 1px solid #3b82f6;
+        }
+        
+        /* Epic rarity */
+        .rarity-epic {
+            background-color: #7e22ce;
+            border: 1px solid #a855f7;
+            animation: epicPulse 2s infinite alternate;
+        }
+        
+        @keyframes epicPulse {
+            0% { box-shadow: 0 0 5px #a855f7; }
+            100% { box-shadow: 0 0 15px #a855f7; }
+        }
+        
+        /* Legendary rarity */
+        .rarity-legendary {
+            background-color: #b45309;
+            border: 1px solid #f59e0b;
+            animation: legendaryPulse 2s infinite alternate;
+        }
+        
+        @keyframes legendaryPulse {
+            0% { box-shadow: 0 0 5px #f59e0b; }
+            100% { box-shadow: 0 0 15px #f59e0b; }
+        }
+        
+        /* Mythic rarity */
+        .rarity-mythic {
+            background: linear-gradient(135deg, #7e22ce, #b45309);
+            border: 1px solid #f8f8f8;
+            animation: mythicPulse 3s infinite alternate;
+        }
+        
+        @keyframes mythicPulse {
+            0% { box-shadow: 0 0 5px #f8f8f8; }
+            100% { box-shadow: 0 0 15px #f8f8f8; }
+        }
+        
+        .character-power {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background-color: rgba(15, 23, 42, 0.8);
+            border: 1px solid var(--blue-medium);
+            border-radius: 10px;
+            padding: 2px 8px;
+            font-family: 'Metal Mania', cursive;
+            font-size: 0.7rem;
+            color: var(--blue-light);
+            z-index: 4;
+        }
+        
+        .character-filter-container {
+            background-color: rgba(15, 23, 42, 0.8);
+            border: 2px solid var(--blue-medium);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+        }
+        
+        .filter-button {
+            background: linear-gradient(135deg, var(--deep-blue-light), var(--deep-blue));
+            color: white;
+            border: 1px solid var(--blue-light);
+            border-radius: 20px;
+            padding: 5px 15px;
+            margin: 5px;
+            font-family: 'Metal Mania', cursive;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-button:hover, .filter-button.active {
+            background: linear-gradient(135deg, var(--blue-medium), var(--blue-dark));
+            box-shadow: 0 0 10px var(--blue-light);
+            transform: translateY(-2px);
+        }
+        
+        .search-input {
+            background-color: rgba(15, 23, 42, 0.8);
+            border: 1px solid var(--blue-medium);
+            border-radius: 20px;
+            padding: 8px 15px;
+            color: white;
+            font-family: 'Metal Mania', cursive;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: var(--blue-light);
+            box-shadow: 0 0 10px var(--blue-light);
+        }
+        
+        /* Character card grid layout */
+        .character-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 20px;
+            perspective: 1000px;
+        }
+
+        @media (max-width: 768px) {
+            .character-grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+                gap: 15px;
+            }
+            
+            .character-name {
+                font-size: 1rem;
+            }
+            
+            .character-type, .character-description {
+                font-size: 0.7rem;
+            }
+        }
+        
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            gap: 10px;
+        }
+        
+        .pagination-button {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--deep-blue-light), var(--deep-blue));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+            transition: all 0.3s ease;
+            border: 2px solid var(--blue-medium);
+            cursor: pointer;
+            font-family: 'Metal Mania', cursive;
+        }
+        
+        .pagination-button:hover, .pagination-button.active {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px var(--blue-light);
+            background: linear-gradient(135deg, var(--blue-medium), var(--blue-dark));
+            border-color: var(--blue-light);
+        }
+        
+        /* Weapon icons and animations */
+        .character-icon {
+            position: relative;
+            width: 80%;
+            height: 80%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Floating animation for weapon icons */
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(3deg); }
+        }
+        
+        /* Lightning effect for mythic weapons */
+        .lightning-effect {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: 3;
+        }
+        
+        .lightning-effect::before,
+        .lightning-effect::after {
+            content: '';
+            position: absolute;
+            background: white;
+            width: 3px;
+            height: 0;
+            filter: blur(1px);
+            z-index: 3;
+            opacity: 0;
+            box-shadow: 0 0 8px 2px rgba(59, 130, 246, 0.8);
+        }
+        
+        .lightning-effect::before {
+            top: 0;
+            left: 20%;
+            animation: lightning 3s infinite;
+        }
+        
+        .lightning-effect::after {
+            top: 0;
+            left: 70%;
+            animation: lightning 2.5s 1s infinite;
+        }
+        
+        @keyframes lightning {
+            0% { 
+                height: 0; 
+                opacity: 0;
+                transform: translateY(0) scaleX(1);
+            }
+            5% { 
+                opacity: 1;
+                height: 100%;
+                transform: translateY(0) scaleX(1.2);
+            }
+            10% { 
+                opacity: 0;
+                height: 100%;
+                transform: translateY(0) scaleX(1);
+            }
+            100% { 
+                opacity: 0;
+                height: 0;
+            }
+        }
+        
+        /* Background particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .particle {
+            position: absolute;
+            background-color: rgba(59, 130, 246, 0.3);
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0;
+            animation: particleFloat linear infinite;
+        }
+        
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.5;
+            }
+            90% {
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateY(-100px) translateX(var(--x-end));
+                opacity: 0;
+            }
+        }
+        
+        /* Weapon styles */
+        .weapon {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Sword */
+        .sword {
+            position: relative;
+            width: 80px;
+            height: 80px;
+        }
+        
+        .sword .blade {
+            position: absolute;
+            width: 6px;
+            height: 60px;
+            background: linear-gradient(to bottom, #e2e8f0, #94a3b8);
+            border-radius: 3px 3px 0 0;
+            top: 5px;
+            left: 37px;
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+            animation: swordGlow 3s ease-in-out infinite alternate;
+        }
+        
+        .sword .hilt {
+            position: absolute;
+            width: 20px;
+            height: 4px;
+            background: #b45309;
+            bottom: 15px;
+            left: 30px;
+            border-radius: 2px;
+        }
+        
+        .sword .handle {
+            position: absolute;
+            width: 4px;
+            height: 15px;
+            background: #78350f;
+            bottom: 0;
+            left: 38px;
+            border-radius: 2px;
+        }
+        
+        @keyframes swordGlow {
+            0% { box-shadow: 0 0 5px rgba(59, 130, 246, 0.5); }
+            100% { box-shadow: 0 0 15px rgba(59, 130, 246, 0.8); }
+        }
+        
+        /* Bow */
+        .bow {
+            position: relative;
+            width: 70px;
+            height: 80px;
+        }
+        
+        .bow .arc {
+            position: absolute;
+            width: 50px;
+            height: 70px;
+            border: 3px solid #78350f;
+            border-radius: 50% 50% 50% 50%;
+            border-right: none;
+            top: 5px;
+            left: 10px;
+            transform: rotate(-10deg);
+        }
+        
+        .bow .string {
+            position: absolute;
+            width: 2px;
+            height: 60px;
+            background: #f8fafc;
+            top: 10px;
+            right: 15px;
+            transform: rotate(-10deg);
+            animation: bowString 2s ease-in-out infinite;
+        }
+        
+        @keyframes bowString {
+            0%, 100% { transform: rotate(-10deg) scaleY(1); }
+            50% { transform: rotate(-10deg) scaleY(0.9); }
+        }
+        
+        /* Staff */
+        .staff {
+            position: relative;
+            width: 60px;
+            height: 80px;
+        }
+        
+        .staff .rod {
+            position: absolute;
+            width: 4px;
+            height: 70px;
+            background: #78350f;
+            top: 5px;
+            left: 28px;
+            border-radius: 2px;
+        }
+        
+        .staff .orb {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background: radial-gradient(circle, #3b82f6, #1d4ed8);
+            border-radius: 50%;
+            top: 0;
+            left: 22px;
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.8);
+            animation: orbPulse 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes orbPulse {
+            0% { 
+                box-shadow: 0 0 10px rgba(59, 130, 246, 0.8);
+                transform: scale(1);
+            }
+            100% { 
+                box-shadow: 0 0 20px rgba(59, 130, 246, 1);
+                transform: scale(1.1);
+            }
+        }
+        
+        /* Axe */
+        .axe {
+            position: relative;
+            width: 70px;
+            height: 80px;
+        }
+        
+        .axe .handle {
+            position: absolute;
+            width: 4px;
+            height: 60px;
+            background: #78350f;
+            bottom: 0;
+            left: 33px;
+            border-radius: 2px;
+        }
+        
+        .axe .head {
+            position: absolute;
+            width: 30px;
+            height: 20px;
+            background: #94a3b8;
+            top: 15px;
+            left: 20px;
+            border-radius: 0 10px 10px 0;
+            box-shadow: 0 0 8px rgba(148, 163, 184, 0.5);
+        }
+        
+        /* Dagger */
+        .dagger {
+            position: relative;
+            width: 60px;
+            height: 70px;
+        }
+        
+        .dagger .blade {
+            position: absolute;
+            width: 4px;
+            height: 40px;
+            background: linear-gradient(to bottom, #e2e8f0, #94a3b8);
+            border-radius: 2px 2px 0 0;
+            top: 10px;
+            left: 28px;
+            box-shadow: 0 0 8px rgba(59, 130, 246, 0.4);
+        }
+        
+        .dagger .hilt {
+            position: absolute;
+            width: 12px;
+            height: 3px;
+            background: #b45309;
+            bottom: 20px;
+            left: 24px;
+            border-radius: 1px;
+        }
+        
+        .dagger .handle {
+            position: absolute;
+            width: 3px;
+            height: 12px;
+            background: #78350f;
+            bottom: 5px;
+            left: 28.5px;
+            border-radius: 1px;
+        }
+        
+        /* Hammer */
+        .hammer {
+            position: relative;
+            width: 70px;
+            height: 80px;
+        }
+        
+        .hammer .handle {
+            position: absolute;
+            width: 4px;
+            height: 55px;
+            background: #78350f;
+            bottom: 0;
+            left: 33px;
+            border-radius: 2px;
+        }
+        
+        .hammer .head {
+            position: absolute;
+            width: 25px;
+            height: 15px;
+            background: #64748b;
+            top: 20px;
+            left: 22.5px;
+            border-radius: 3px;
+            box-shadow: 0 0 10px rgba(100, 116, 139, 0.5);
+        }
+        
+        /* Spear */
+        .spear {
+            position: relative;
+            width: 60px;
+            height: 80px;
+        }
+        
+        .spear .shaft {
+            position: absolute;
+            width: 3px;
+            height: 70px;
+            background: #78350f;
+            top: 5px;
+            left: 28.5px;
+            border-radius: 1px;
+        }
+        
+        .spear .tip {
+            position: absolute;
+            width: 8px;
+            height: 15px;
+            background: linear-gradient(to bottom, #e2e8f0, #94a3b8);
+            top: 0;
+            left: 26px;
+            border-radius: 50% 50% 0 0;
+            box-shadow: 0 0 8px rgba(59, 130, 246, 0.4);
+        }
+        
+        /* Shield */
+        .shield {
+            position: relative;
+            width: 60px;
+            height: 70px;
+        }
+        
+        .shield .body {
+            position: absolute;
+            width: 50px;
+            height: 60px;
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
+            border: 2px solid #60a5fa;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            top: 5px;
+            left: 5px;
+            box-shadow: inset 0 0 15px rgba(59, 130, 246, 0.3);
+        }
+        
+        .shield .emblem {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #f59e0b;
+            border-radius: 50%;
+            top: 25px;
+            left: 20px;
+            box-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
+        }
+        
+        /* Crossbow */
+        .crossbow {
+            position: relative;
+            width: 70px;
+            height: 60px;
+        }
+        
+        .crossbow .stock {
+            position: absolute;
+            width: 40px;
+            height: 4px;
+            background: #78350f;
+            top: 28px;
+            left: 15px;
+            border-radius: 2px;
+        }
+        
+        .crossbow .bow-part {
+            position: absolute;
+            width: 30px;
+            height: 3px;
+            background: #b45309;
+            top: 26px;
+            left: 5px;
+            border-radius: 1px;
+            transform: rotate(90deg);
+        }
+        
+        .crossbow .string {
+            position: absolute;
+            width: 1px;
+            height: 25px;
+            background: #f8fafc;
+            top: 17.5px;
+            left: 19.5px;
+        }
+        
+        /* Mace */
+        .mace {
+            position: relative;
+            width: 60px;
+            height: 80px;
+        }
+        
+        .mace .handle {
+            position: absolute;
+            width: 4px;
+            height: 50px;
+            background: #78350f;
+            bottom: 0;
+            left: 28px;
+            border-radius: 2px;
+        }
+        
+        .mace .head {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #64748b;
+            top: 10px;
+            left: 20px;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(100, 116, 139, 0.5);
+        }
+        
+        .mace .spikes {
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            width: 20px;
+            height: 20px;
+        }
+        
+        .mace .spike {
+            position: absolute;
+            width: 3px;
+            height: 6px;
+            background: #94a3b8;
+            border-radius: 1px;
+        }
+        
+        .mace .spike:nth-child(1) { top: -3px; left: 8.5px; }
+        .mace .spike:nth-child(2) { top: 8.5px; right: -3px; }
+        .mace .spike:nth-child(3) { bottom: -3px; left: 8.5px; }
+        .mace .spike:nth-child(4) { top: 8.5px; left: -3px; }
+        
+        /* Wand */
+        .wand {
+            position: relative;
+            width: 50px;
+            height: 70px;
+        }
+        
+        .wand .rod {
+            position: absolute;
+            width: 3px;
+            height: 50px;
+            background: #78350f;
+            bottom: 0;
+            left: 23.5px;
+            border-radius: 1px;
+        }
+        
+        .wand .crystal {
+            position: absolute;
+            width: 10px;
+            height: 15px;
+            background: linear-gradient(to bottom, #a855f7, #7e22ce);
+            top: 5px;
+            left: 20px;
+            border-radius: 50% 50% 0 0;
+            box-shadow: 0 0 12px rgba(168, 85, 247, 0.8);
+            animation: crystalGlow 2.5s ease-in-out infinite alternate;
+        }
+        
+        @keyframes crystalGlow {
+            0% { 
+                box-shadow: 0 0 8px rgba(168, 85, 247, 0.8);
+                transform: scale(1);
+            }
+            100% { 
+                box-shadow: 0 0 18px rgba(168, 85, 247, 1);
+                transform: scale(1.05);
+            }
+        }
+        
+        /* Katana */
+        .katana {
+            position: relative;
+            width: 80px;
+            height: 80px;
+        }
+        
+        .katana .blade {
+            position: absolute;
+            width: 4px;
+            height: 55px;
+            background: linear-gradient(to bottom, #f8fafc, #e2e8f0);
+            border-radius: 2px 2px 0 0;
+            top: 10px;
+            left: 38px;
+            box-shadow: 0 0 12px rgba(59, 130, 246, 0.6);
+            transform: rotate(15deg);
+        }
+        
+        .katana .hilt {
+            position: absolute;
+            width: 15px;
+            height: 3px;
+            background: #1f2937;
+            bottom: 18px;
+            left: 32.5px;
+            border-radius: 1px;
+        }
+        
+        .katana .handle {
+            position: absolute;
+            width: 3px;
+            height: 12px;
+            background: #374151;
+            bottom: 5px;
+            left: 38.5px;
+            border-radius: 1px;
+        }
+        
+        /* Trident */
+        .trident {
+            position: relative;
+            width: 60px;
+            height: 80px;
+        }
+        
+        .trident .shaft {
+            position: absolute;
+            width: 3px;
+            height: 65px;
+            background: #78350f;
+            bottom: 0;
+            left: 28.5px;
+            border-radius: 1px;
+        }
+        
+        .trident .prongs {
+            position: absolute;
+            top: 5px;
+            left: 20px;
+            width: 20px;
+            height: 20px;
+        }
+        
+        .trident .prong {
+            position: absolute;
+            width: 2px;
+            height: 15px;
+            background: #94a3b8;
+            border-radius: 1px 1px 0 0;
+            box-shadow: 0 0 6px rgba(59, 130, 246, 0.4);
+        }
+        
+        .trident .prong:nth-child(1) { left: 3px; }
+        .trident .prong:nth-child(2) { left: 9px; }
+        .trident .prong:nth-child(3) { left: 15px; }
+        
+        /* Scythe */
+        .scythe {
+            position: relative;
+            width: 70px;
+            height: 80px;
+        }
+        
+        .scythe .handle {
+            position: absolute;
+            width: 3px;
+            height: 60px;
+            background: #78350f;
+            bottom: 0;
+            left: 33.5px;
+            border-radius: 1px;
+        }
+        
+        .scythe .blade {
+            position: absolute;
+            width: 25px;
+            height: 15px;
+            background: #94a3b8;
+            top: 15px;
+            left: 15px;
+            border-radius: 50% 0 0 50%;
+            box-shadow: 0 0 10px rgba(148, 163, 184, 0.5);
+            transform: rotate(-30deg);
+        }
+        
+        /* Flail */
+        .flail {
+            position: relative;
+            width: 60px;
+            height: 80px;
+        }
+        
+        .flail .handle {
+            position: absolute;
+            width: 4px;
+            height: 45px;
+            background: #78350f;
+            bottom: 0;
+            left: 28px;
+            border-radius: 2px;
+        }
+        
+        .flail .chain {
+            position: absolute;
+            width: 1px;
+            height: 15px;
+            background: #64748b;
+            top: 20px;
+            left: 29.5px;
+        }
+        
+        .flail .head {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: #64748b;
+            top: 8px;
+            left: 24px;
+            border-radius: 50%;
+            box-shadow: 0 0 8px rgba(100, 116, 139, 0.5);
+            animation: flailSwing 2s ease-in-out infinite;
+        }
+        
+        @keyframes flailSwing {
+            0%, 100% { transform: rotate(-10deg); }
+            50% { transform: rotate(10deg); }
+        }
+        
+        /* Chakram */
+        .chakram {
+            position: relative;
+            width: 60px;
+            height: 60px;
+        }
+        
+        .chakram .ring {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border: 4px solid #94a3b8;
+            border-radius: 50%;
+            top: 5px;
+            left: 5px;
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+            animation: chakramSpin 4s linear infinite;
+        }
+        
+        .chakram .inner {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #3b82f6;
+            border-radius: 50%;
+            top: 20px;
+            left: 20px;
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.8);
+        }
+        
+        @keyframes chakramSpin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Whip */
+        .whip {
+            position: relative;
+            width: 60px;
+            height: 80px;
+        }
+        
+        .whip .handle {
+            position: absolute;
+            width: 4px;
+            height: 20px;
+            background: #78350f;
+            bottom: 0;
+            left: 28px;
+            border-radius: 2px;
+        }
+        
+        .whip .lash {
+            position: absolute;
+            width: 2px;
+            height: 50px;
+            background: #8b5cf6;
+            bottom: 20px;
+            left: 29px;
+            border-radius: 1px;
+            transform-origin: bottom;
+            animation: whipLash 3s ease-in-out infinite;
+        }
+        
+        @keyframes whipLash {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(15deg); }
+            75% { transform: rotate(-15deg); }
+        }
+        
+        /* Nunchucks */
+        .nunchucks {
+            position: relative;
+            width: 60px;
+            height: 70px;
+        }
+        
+        .nunchucks .stick1 {
+            position: absolute;
+            width: 3px;
+            height: 25px;
+            background: #78350f;
+            top: 10px;
+            left: 20px;
+            border-radius: 1px;
+            transform-origin: bottom;
+            animation: nunchuckSwing1 2s ease-in-out infinite;
+        }
+        
+        .nunchucks .stick2 {
+            position: absolute;
+            width: 3px;
+            height: 25px;
+            background: #78350f;
+            top: 35px;
+            left: 35px;
+            border-radius: 1px;
+            transform-origin: top;
+            animation: nunchuckSwing2 2s ease-in-out infinite;
+        }
+        
+        .nunchucks .chain {
+            position: absolute;
+            width: 1px;
+            height: 15px;
+            background: #64748b;
+            top: 30px;
+            left: 27.5px;
+        }
+        
+        @keyframes nunchuckSwing1 {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(30deg); }
+        }
+        
+        @keyframes nunchuckSwing2 {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(-30deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+    
+    <div class="container mx-auto px-4 py-8">
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="comic-title text-4xl md:text-6xl mb-4 flicker">
+                BLUE ARSENAL UNIVERSE
+            </h1>
+            <p class="comic-text text-lg md:text-xl text-blue-200">
+                Legendary Weapons Collection
+            </p>
+        </div>
+        
+        <!-- Filter and Search -->
+        <div class="character-filter-container">
+            <input type="text" id="searchInput" class="search-input" placeholder="Search weapons...">
+            
+            <div class="flex flex-wrap justify-center">
+                <button class="filter-button active" data-filter="all">All</button>
+                <button class="filter-button" data-filter="common">Common</button>
+                <button class="filter-button" data-filter="uncommon">Uncommon</button>
+                <button class="filter-button" data-filter="rare">Rare</button>
+                <button class="filter-button" data-filter="epic">Epic</button>
+                <button class="filter-button" data-filter="legendary">Legendary</button>
+                <button class="filter-button" data-filter="mythic">Mythic</button>
+            </div>
+        </div>
+        
+        <!-- Character Grid -->
+        <div class="character-grid" id="characterGrid">
+            <!-- Characters will be populated by JavaScript -->
+        </div>
+        
+        <!-- Pagination -->
+        <div class="pagination" id="pagination">
+            <!-- Pagination will be populated by JavaScript -->
+        </div>
+    </div>
+
+    <script>
+        // Weapon data
+        const weapons = [
+            {
+                name: "Excalibur",
+                type: "Legendary Sword",
+                rarity: "legendary",
+                power: "⚡ 950",
+                description: "The legendary blade of kings, forged in ancient magic and blessed by the gods themselves."
+            },
+            {
+                name: "Shadowbane",
+                type: "Mythic Katana",
+                rarity: "mythic",
+                power: "⚡ 1200",
+                description: "A blade that cuts through darkness itself, wielded by the greatest shadow warriors."
+            },
+            {
+                name: "Frostbite",
+                type: "Epic Bow",
+                rarity: "epic",
+                power: "⚡ 780",
+                description: "An enchanted bow that fires arrows of pure ice, freezing enemies on impact."
+            },
+            {
+                name: "Thunderstrike",
+                type: "Legendary Staff",
+                rarity: "legendary",
+                power: "⚡ 890",
+                description: "A staff crackling with electrical energy, capable of summoning devastating lightning."
+            },
+            {
+                name: "Bloodaxe",
+                type: "Rare Axe",
+                rarity: "rare",
+                power: "⚡ 650",
+                description: "A brutal axe that grows stronger with each enemy defeated in battle."
+            },
+            {
+                name: "Whisper",
+                type: "Epic Dagger",
+                rarity: "epic",
+                power: "⚡ 720",
+                description: "A silent blade that strikes without warning, perfect for stealth assassinations."
+            },
+            {
+                name: "Earthshaker",
+                type: "Legendary Hammer",
+                rarity: "legendary",
+                power: "⚡ 920",
+                description: "A massive hammer that can split the ground and create devastating earthquakes."
+            },
+            {
+                name: "Dragonspear",
+                type: "Epic Spear",
+                rarity: "epic",
+                power: "⚡ 800",
+                description: "Forged from dragon bone and steel, this spear pierces through any armor."
+            },
+            {
+                name: "Aegis",
+                type: "Mythic Shield",
+                rarity: "mythic",
+                power: "⚡ 1100",
+                description: "The ultimate defensive weapon, capable of reflecting any attack back at enemies."
+            },
+            {
+                name: "Voidshot",
+                type: "Rare Crossbow",
+                rarity: "rare",
+                power: "⚡ 680",
+                description: "A crossbow that fires bolts infused with void energy, erasing targets from existence."
+            },
+            {
+                name: "Bonecrusher",
+                type: "Uncommon Mace",
+                rarity: "uncommon",
+                power: "⚡ 520",
+                description: "A heavy mace designed to shatter bones and crush armor with devastating force."
+            },
+            {
+                name: "Starlight",
+                type: "Epic Wand",
+                rarity: "epic",
+                power: "⚡ 750",
+                description: "A wand that channels the power of distant stars, casting brilliant magical spells."
+            },
+            {
+                name: "Moonblade",
+                type: "Rare Katana",
+                rarity: "rare",
+                power: "⚡ 670",
+                description: "A curved blade that glows with moonlight, granting enhanced speed and precision."
+            },
+            {
+                name: "Poseidon's Fury",
+                type: "Legendary Trident",
+                rarity: "legendary",
+                power: "⚡ 880",
+                description: "The trident of the sea god, commanding the power of oceans and storms."
+            },
+            {
+                name: "Soulreaper",
+                type: "Mythic Scythe",
+                rarity: "mythic",
+                power: "⚡ 1150",
+                description: "A scythe that harvests souls, growing more powerful with each life it claims."
+            },
+            {
+                name: "Chaos Chain",
+                type: "Epic Flail",
+                rarity: "epic",
+                power: "⚡ 760",
+                description: "A flail imbued with chaotic energy, its strikes are unpredictable and devastating."
+            },
+            {
+                name: "Windcutter",
+                type: "Rare Chakram",
+                rarity: "rare",
+                power: "⚡ 640",
+                description: "A spinning blade that cuts through air itself, returning to its wielder's hand."
+            },
+            {
+                name: "Serpent's Lash",
+                type: "Uncommon Whip",
+                rarity: "uncommon",
+                power: "⚡ 480",
+                description: "A whip that moves like a living serpent, striking with venomous precision."
+            },
+            {
+                name: "Twin Fury",
+                type: "Common Nunchucks",
+                rarity: "common",
+                power: "⚡ 420",
+                description: "Simple but effective nunchucks that allow for rapid, flowing combat techniques."
+            },
+            {
+                name: "Ironguard",
+                type: "Common Shield",
+                rarity: "common",
+                power: "⚡ 380",
+                description: "A sturdy iron shield that provides reliable protection in any battle."
+            },
+            {
+                name: "Flamebringer",
+                type: "Mythic Sword",
+                rarity: "mythic",
+                power: "⚡ 1300",
+                description: "A sword wreathed in eternal flames, capable of melting through any defense."
+            },
+            {
+                name: "Venom Fang",
+                type: "Epic Dagger",
+                rarity: "epic",
+                power: "⚡ 740",
+                description: "A poisoned blade that delivers deadly toxins with every strike."
+            },
+            {
+                name: "Stormcaller",
+                type: "Legendary Bow",
+                rarity: "legendary",
+                power: "⚡ 910",
+                description: "A bow that shoots arrows of pure lightning, calling down storms from the heavens."
+            },
+            {
+                name: "Doomhammer",
+                type: "Epic Hammer",
+                rarity: "epic",
+                power: "⚡ 820",
+                description: "A hammer infused with dark magic, bringing doom to all who face it."
+            },
+            {
+                name: "Crystal Shard",
+                type: "Rare Wand",
+                rarity: "rare",
+                power: "⚡ 590",
+                description: "A wand made from pure crystal, amplifying magical energies tenfold."
+            },
+            {
+                name: "Nightfall",
+                type: "Legendary Scythe",
+                rarity: "legendary",
+                power: "⚡ 940",
+                description: "A scythe that brings eternal darkness, shrouding enemies in shadow."
+            },
+            {
+                name: "Phoenix Spear",
+                type: "Mythic Spear",
+                rarity: "mythic",
+                power: "⚡ 1180",
+                description: "A spear that burns with phoenix fire, rising stronger after each battle."
+            },
+            {
+                name: "Glacier Shield",
+                type: "Epic Shield",
+                rarity: "epic",
+                power: "⚡ 770",
+                description: "A shield made of eternal ice, freezing attackers on contact."
+            },
+            {
+                name: "Shadowstrike",
+                type: "Rare Crossbow",
+                rarity: "rare",
+                power: "⚡ 660",
+                description: "A crossbow that fires bolts through shadows, striking from impossible angles."
+            },
+            {
+                name: "Warhammer",
+                type: "Uncommon Hammer",
+                rarity: "uncommon",
+                power: "⚡ 540",
+                description: "A reliable war hammer used by countless warriors throughout history."
+            },
+            {
+                name: "Thornwhip",
+                type: "Rare Whip",
+                rarity: "rare",
+                power: "⚡ 620",
+                description: "A whip covered in magical thorns that pierce through armor and flesh."
+            },
+            {
+                name: "Bladedancer",
+                type: "Epic Katana",
+                rarity: "epic",
+                power: "⚡ 790",
+                description: "A katana that moves with fluid grace, dancing through enemy defenses."
+            },
+            {
+                name: "Skullcrusher",
+                type: "Rare Mace",
+                rarity: "rare",
+                power: "⚡ 630",
+                description: "A mace designed for maximum impact, crushing skulls with devastating force."
+            },
+            {
+                name: "Mystic Staff",
+                type: "Uncommon Staff",
+                rarity: "uncommon",
+                power: "⚡ 500",
+                description: "A staff imbued with basic magical properties, perfect for novice spellcasters."
+            },
+            {
+                name: "Razor Ring",
+                type: "Uncommon Chakram",
+                rarity: "uncommon",
+                power: "⚡ 510",
+                description: "A sharp chakram with razor edges, spinning with deadly precision."
+            },
+            {
+                name: "Battle Axe",
+                type: "Common Axe",
+                rarity: "common",
+                power: "⚡ 400",
+                description: "A standard battle axe, reliable and effective in close combat."
+            },
+            {
+                name: "Hunter's Bow",
+                type: "Common Bow",
+                rarity: "common",
+                power: "⚡ 360",
+                description: "A simple hunting bow, perfect for beginners and forest rangers."
+            },
+            {
+                name: "Steel Sword",
+                type: "Common Sword",
+                rarity: "common",
+                power: "⚡ 390",
+                description: "A well-crafted steel sword, the weapon of choice for many warriors."
+            },
+            {
+                name: "Wooden Staff",
+                type: "Common Staff",
+                rarity: "common",
+                power: "⚡ 340",
+                description: "A simple wooden staff, used by apprentice mages and healers."
+            },
+            {
+                name: "Iron Spear",
+                type: "Common Spear",
+                rarity: "common",
+                power: "⚡ 370",
+                description: "A basic iron spear with good reach and reliable piercing power."
+            },
+            {
+                name: "Void Reaper",
+                type: "Mythic Scythe",
+                rarity: "mythic",
+                power: "⚡ 1250",
+                description: "A scythe that cuts through reality itself, erasing enemies from existence."
+            },
+            {
+                name: "Divine Hammer",
+                type: "Legendary Hammer",
+                rarity: "legendary",
+                power: "⚡ 960",
+                description: "A hammer blessed by the gods, capable of smiting evil with holy light."
+            },
+            {
+                name: "Demon Blade",
+                type: "Epic Sword",
+                rarity: "epic",
+                power: "⚡ 810",
+                description: "A sword forged in the depths of hell, thirsting for the blood of the innocent."
+            },
+            {
+                name: "Lightning Rod",
+                type: "Rare Staff",
+                rarity: "rare",
+                power: "⚡ 610",
+                description: "A staff that attracts and channels lightning, electrifying all nearby enemies."
+            },
+            {
+                name: "Frost Dagger",
+                type: "Uncommon Dagger",
+                rarity: "uncommon",
+                power: "⚡ 460",
+                description: "A dagger that freezes wounds, preventing healing and causing frostbite."
+            },
+            {
+                name: "War Trident",
+                type: "Rare Trident",
+                rarity: "rare",
+                power: "⚡ 650",
+                description: "A trident used in ancient sea battles, commanding respect and fear."
+            },
+            {
+                name: "Chain Flail",
+                type: "Uncommon Flail",
+                rarity: "uncommon",
+                power: "⚡ 490",
+                description: "A flail with a long chain, allowing for unpredictable striking patterns."
+            },
+            {
+                name: "Throwing Knives",
+                type: "Common Dagger",
+                rarity: "common",
+                power: "⚡ 350",
+                description: "A set of balanced throwing knives, perfect for ranged stealth attacks."
+            },
+            {
+                name: "Buckler",
+                type: "Common Shield",
+                rarity: "common",
+                power: "⚡ 320",
+                description: "A small, lightweight shield that offers basic protection and mobility."
+            },
+            {
+                name: "Training Sword",
+                type: "Common Sword",
+                rarity: "common",
+                power: "⚡ 300",
+                description: "A blunted training sword used by novice warriors to learn combat basics."
+            },
+            {
+                name: "Infinity Blade",
+                type: "Mythic Sword",
+                rarity: "mythic",
+                power: "⚡ 1400",
+                description: "A blade that exists across all dimensions, cutting through space and time itself."
+            }
+        ];
+
+        // Weapon type to CSS class mapping
+        const weaponTypeMap = {
+            "Legendary Sword": "sword",
+            "Mythic Katana": "katana",
+            "Epic Bow": "bow",
+            "Legendary Staff": "staff",
+            "Rare Axe": "axe",
+            "Epic Dagger": "dagger",
+            "Legendary Hammer": "hammer",
+            "Epic Spear": "spear",
+            "Mythic Shield": "shield",
+            "Rare Crossbow": "crossbow",
+            "Uncommon Mace": "mace",
+            "Epic Wand": "wand",
+            "Rare Katana": "katana",
+            "Legendary Trident": "trident",
+            "Mythic Scythe": "scythe",
+            "Epic Flail": "flail",
+            "Rare Chakram": "chakram",
+            "Uncommon Whip": "whip",
+            "Common Nunchucks": "nunchucks",
+            "Common Shield": "shield"
+        };
+
+        // Weapon HTML templates
+        const weaponTemplates = {
+            sword: `
+                <div class="sword floating">
+                    <div class="blade"></div>
+                    <div class="hilt"></div>
+                    <div class="handle"></div>
+                </div>
+            `,
+            bow: `
+                <div class="bow floating">
+                    <div class="arc"></div>
+                    <div class="string"></div>
+                </div>
+            `,
+            staff: `
+                <div class="staff floating">
+                    <div class="rod"></div>
+                    <div class="orb"></div>
+                </div>
+            `,
+            axe: `
+                <div class="axe floating">
+                    <div class="handle"></div>
+                    <div class="head"></div>
+                </div>
+            `,
+            dagger: `
+                <div class="dagger floating">
+                    <div class="blade"></div>
+                    <div class="hilt"></div>
+                    <div class="handle"></div>
+                </div>
+            `,
+            hammer: `
+                <div class="hammer floating">
+                    <div class="handle"></div>
+                    <div class="head"></div>
+                </div>
+            `,
+            spear: `
+                <div class="spear floating">
+                    <div class="shaft"></div>
+                    <div class="tip"></div>
+                </div>
+            `,
+            shield: `
+                <div class="shield floating">
+                    <div class="body"></div>
+                    <div class="emblem"></div>
+                </div>
+            `,
+            crossbow: `
+                <div class="crossbow floating">
+                    <div class="stock"></div>
+                    <div class="bow-part"></div>
+                    <div class="string"></div>
+                </div>
+            `,
+            mace: `
+                <div class="mace floating">
+                    <div class="handle"></div>
+                    <div class="head"></div>
+                    <div class="spikes">
+                        <div class="spike"></div>
+                        <div class="spike"></div>
+                        <div class="spike"></div>
+                        <div class="spike"></div>
+                    </div>
+                </div>
+            `,
+            wand: `
+                <div class="wand floating">
+                    <div class="rod"></div>
+                    <div class="crystal"></div>
+                </div>
+            `,
+            katana: `
+                <div class="katana floating">
+                    <div class="blade"></div>
+                    <div class="hilt"></div>
+                    <div class="handle"></div>
+                </div>
+            `,
+            trident: `
+                <div class="trident floating">
+                    <div class="shaft"></div>
+                    <div class="prongs">
+                        <div class="prong"></div>
+                        <div class="prong"></div>
+                        <div class="prong"></div>
+                    </div>
+                </div>
+            `,
+            scythe: `
+                <div class="scythe floating">
+                    <div class="handle"></div>
+                    <div class="blade"></div>
+                </div>
+            `,
+            flail: `
+                <div class="flail floating">
+                    <div class="handle"></div>
+                    <div class="chain"></div>
+                    <div class="head"></div>
+                </div>
+            `,
+            chakram: `
+                <div class="chakram floating">
+                    <div class="ring"></div>
+                    <div class="inner"></div>
+                </div>
+            `,
+            whip: `
+                <div class="whip floating">
+                    <div class="handle"></div>
+                    <div class="lash"></div>
+                </div>
+            `,
+            nunchucks: `
+                <div class="nunchucks floating">
+                    <div class="stick1"></div>
+                    <div class="stick2"></div>
+                    <div class="chain"></div>
+                </div>
+            `
+        };
+
+        let currentPage = 1;
+        const itemsPerPage = 12;
+        let filteredWeapons = [...weapons];
+        let currentFilter = 'all';
+
+        // Initialize the page
+        function init() {
+            createParticles();
+            setupEventListeners();
+            renderWeapons();
+            renderPagination();
+        }
+
+        // Create floating particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                const size = Math.random() * 4 + 1;
+                const startX = Math.random() * window.innerWidth;
+                const endX = startX + (Math.random() - 0.5) * 200;
+                const duration = Math.random() * 10 + 10;
+                const delay = Math.random() * 5;
+                
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.left = startX + 'px';
+                particle.style.animationDuration = duration + 's';
+                particle.style.animationDelay = delay + 's';
+                particle.style.setProperty('--x-end', (endX - startX) + 'px');
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Search functionality
+            document.getElementById('searchInput').addEventListener('input', handleSearch);
+            
+            // Filter buttons
+            document.querySelectorAll('.filter-button').forEach(button => {
+                button.addEventListener('click', handleFilter);
+            });
+        }
+
+        // Handle search
+        function handleSearch(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            filteredWeapons = weapons.filter(weapon => 
+                weapon.name.toLowerCase().includes(searchTerm) ||
+                weapon.type.toLowerCase().includes(searchTerm) ||
+                weapon.description.toLowerCase().includes(searchTerm)
+            );
+            
+            if (currentFilter !== 'all') {
+                filteredWeapons = filteredWeapons.filter(weapon => weapon.rarity === currentFilter);
+            }
+            
+            currentPage = 1;
+            renderWeapons();
+            renderPagination();
+        }
+
+        // Handle filter
+        function handleFilter(e) {
+            const filter = e.target.dataset.filter;
+            currentFilter = filter;
+            
+            // Update active button
+            document.querySelectorAll('.filter-button').forEach(btn => btn.classList.remove('active'));
+            e.target.classList.add('active');
+            
+            // Filter weapons
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            filteredWeapons = weapons.filter(weapon => {
+                const matchesSearch = weapon.name.toLowerCase().includes(searchTerm) ||
+                                    weapon.type.toLowerCase().includes(searchTerm) ||
+                                    weapon.description.toLowerCase().includes(searchTerm);
+                const matchesFilter = filter === 'all' || weapon.rarity === filter;
+                return matchesSearch && matchesFilter;
+            });
+            
+            currentPage = 1;
+            renderWeapons();
+            renderPagination();
+        }
+
+        // Render weapons
+        function renderWeapons() {
+            const grid = document.getElementById('characterGrid');
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const weaponsToShow = filteredWeapons.slice(startIndex, endIndex);
+            
+            grid.innerHTML = weaponsToShow.map(weapon => {
+                const weaponClass = weaponTypeMap[weapon.type] || 'sword';
+                const weaponHTML = weaponTemplates[weaponClass] || weaponTemplates.sword;
+                const lightningEffect = weapon.rarity === 'mythic' ? '<div class="lightning-effect"></div>' : '';
+                
+                return `
+                    <div class="character-card" data-rarity="${weapon.rarity}">
+                        <div class="character-image">
+                            <div class="character-icon">
+                                <div class="weapon">
+                                    ${weaponHTML}
+                                </div>
+                            </div>
+                            ${lightningEffect}
+                            <div class="character-rarity rarity-${weapon.rarity}">${weapon.rarity}</div>
+                            <div class="character-power">${weapon.power}</div>
+                        </div>
+                        <div class="character-info">
+                            <div class="character-name">${weapon.name}</div>
+                            <div class="character-type">${weapon.type}</div>
+                            <div class="character-description">${weapon.description}</div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Render pagination
+        function renderPagination() {
+            const pagination = document.getElementById('pagination');
+            const totalPages = Math.ceil(filteredWeapons.length / itemsPerPage);
+            
+            if (totalPages <= 1) {
+                pagination.innerHTML = '';
+                return;
+            }
+            
+            let paginationHTML = '';
+            
+            // Previous button
+            if (currentPage > 1) {
+                paginationHTML += `<button class="pagination-button" onclick="changePage(${currentPage - 1})">‹</button>`;
+            }
+            
+            // Page numbers
+            for (let i = 1; i <= totalPages; i++) {
+                if (i === currentPage) {
+                    paginationHTML += `<button class="pagination-button active">${i}</button>`;
+                } else if (i === 1 || i === totalPages || (i >= currentPage - 1 && i <= currentPage + 1)) {
+                    paginationHTML += `<button class="pagination-button" onclick="changePage(${i})">${i}</button>`;
+                } else if (i === currentPage - 2 || i === currentPage + 2) {
+                    paginationHTML += `<span class="pagination-button">...</span>`;
+                }
+            }
+            
+            // Next button
+            if (currentPage < totalPages) {
+                paginationHTML += `<button class="pagination-button" onclick="changePage(${currentPage + 1})">›</button>`;
+            }
+            
+            pagination.innerHTML = paginationHTML;
+        }
+
+        // Change page
+        function changePage(page) {
+            currentPage = page;
+            renderWeapons();
+            renderPagination();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9660b1b4321e3231',t:'MTc1MzY2NzA5Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
