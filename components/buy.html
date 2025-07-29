@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Black Plankton (BP)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
+        
+        :root {
+            --purple-darkest: #2e1065;
+            --purple-dark: #4c1d95;
+            --purple-medium: #7e22ce;
+            --purple-light: #a855f7;
+            --purple-lightest: #d8b4fe;
+            --black: #121212;
+        }
+        
+        body {
+            font-family: 'Special Elite', cursive;
+            background-color: var(--black);
+            color: #f8f8f8;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            background-color: rgba(18, 18, 18, 0.9);
+            border: 2px solid var(--purple-medium);
+            border-radius: 8px;
+            padding: 30px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 0 20px rgba(126, 34, 206, 0.3);
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .logo {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            background-color: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        h1 {
+            margin: 0 0 30px;
+            color: var(--purple-light);
+            font-size: 28px;
+            text-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
+        }
+        
+        .input-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        input {
+            width: 100%;
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid var(--purple-medium);
+            background-color: rgba(30, 30, 30, 0.8);
+            color: white;
+            font-family: 'Special Elite', cursive;
+            font-size: 16px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        
+        .quick-amounts {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 12px;
+        }
+        
+        .amount-btn {
+            background-color: var(--purple-dark);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: 'Special Elite', cursive;
+            font-size: 14px;
+            transition: all 0.3s;
+            flex: 1;
+            margin: 0 5px;
+        }
+        
+        .amount-btn:hover {
+            background-color: var(--purple-medium);
+            transform: translateY(-2px);
+        }
+        
+        .buy-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(to right, var(--purple-dark), var(--purple-medium));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Special Elite', cursive;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+        
+        .buy-btn:hover {
+            background: linear-gradient(to right, var(--purple-medium), var(--purple-light));
+            box-shadow: 0 0 15px var(--purple-light);
+        }
+        
+        .wallet-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(to right, var(--black), var(--purple-dark));
+            color: white;
+            border: 2px solid var(--purple-medium);
+            border-radius: 8px;
+            font-family: 'Special Elite', cursive;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            letter-spacing: 1px;
+        }
+        
+        .wallet-btn:hover {
+            background: linear-gradient(to right, var(--purple-dark), var(--purple-medium));
+            box-shadow: 0 0 10px var(--purple-light);
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: var(--black);
+            border: 2px solid var(--purple-medium);
+            padding: 30px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 0 25px rgba(126, 34, 206, 0.5);
+            position: relative;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: var(--purple-light);
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        .ink-splash {
+            position: absolute;
+            opacity: 0.15;
+            z-index: -1;
+            filter: blur(2px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Ink splashes (from your existing theme) -->
+    <svg class="ink-splash" style="top: 10%; left: 5%; width: 200px; height: 200px;" viewBox="0 0 200 200">
+        <path d="M139.5,21.2c15.8,6.7,30.9,18.4,34.7,33.4c3.8,15-3.7,33.4-17.3,48.5c-13.6,15.1-33.4,27-53.1,28.8
+        c-19.7,1.8-39.4-6.5-52.9-19.7C37.4,99,30.1,80.9,31.7,64.5c1.6-16.4,12.1-31.1,26.9-39.7C73.4,16.2,92.5,13.7,108.6,14
+        C124.7,14.3,123.7,14.5,139.5,21.2z" fill="#4c1d95"/>
+    </svg>
+    
+    <svg class="ink-splash" style="bottom: 15%; right: 10%; width: 250px; height: 250px;" viewBox="0 0 200 200">
+        <path d="M139.5,21.2c15.8,6.7,30.9,18.4,34.7,33.4c3.8,15-3.7,33.4-17.3,48.5c-13.6,15.1-33.4,27-53.1,28.8
+        c-19.7,1.8-39.4-6.5-52.9-19.7C37.4,99,30.1,80.9,31.7,64.5c1.6-16.4,12.1-31.1,26.9-39.7C73.4,16.2,92.5,13.7,108.6,14
+        C124.7,14.3,123.7,14.5,139.5,21.2z" fill="#7e22ce"/>
+    </svg>
+
+    <div class="container">
+        <div class="logo">
+            <img src="../public/logo.png" alt="Black Plankton Logo">
+        </div>
+        <h1>Black Plankton (BP)</h1>
+        
+        <div class="input-group">
+            <input type="number" id="amountInput" placeholder="Enter amount" min="0" step="0.1">
+            <div class="quick-amounts">
+                <button class="amount-btn" onclick="setAmount(1)">1M</button>
+                <button class="amount-btn" onclick="setAmount(10)">10M</button>
+                <button class="amount-btn" onclick="setAmount(100)">100M</button>
+            </div>
+        </div>
+        
+        <button class="buy-btn" id="buyButton">BUY</button>
+        <button class="wallet-btn" id="connectWallet">
+            <i class="fas fa-wallet"></i> CONNECT WALLET
+        </button>
+    </div>
+    
+    <!-- Buy Confirmation Modal -->
+    <div class="modal" id="buyModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h2 style="color: var(--purple-light); margin-bottom: 20px;">Confirm Purchase</h2>
+            <p style="font-size: 18px; margin-bottom: 25px;">You are about to buy <span id="displayAmount" style="color: var(--purple-light); font-weight: bold;">0</span> BP tokens</p>
+            <button class="buy-btn" onclick="confirmPurchase()">CONFIRM BUY</button>
+        </div>
+    </div>
+    
+    <script>
+        // Set quick amounts
+        function setAmount(amount) {
+            document.getElementById('amountInput').value = amount;
+        }
+        
+        // Buy button click handler
+        document.getElementById('buyButton').addEventListener('click', function() {
+            const amount = document.getElementById('amountInput').value;
+            
+            if (!amount || amount <= 0) {
+                alert('Please enter a valid amount');
+                return;
+            }
+            
+            document.getElementById('displayAmount').textContent = amount;
+            document.getElementById('buyModal').style.display = 'flex';
+        });
+        
+        // Close modal
+        function closeModal() {
+            document.getElementById('buyModal').style.display = 'none';
+        }
+        
+        // Confirm purchase
+        function confirmPurchase() {
+            const amount = document.getElementById('amountInput').value;
+            
+            // Here you would typically:
+            // 1. Check if wallet is connected
+            // 2. Call the Inkypump contract function
+            // 3. Handle the transaction
+            
+            // For demo purposes:
+            alert(`Transaction submitted for ${amount} BP tokens!`);
+            closeModal();
+        }
+        
+        // Wallet connection
+        document.getElementById('connectWallet').addEventListener('click', async function() {
+            try {
+                if (window.ethereum) {
+                    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+                    const walletAddress = accounts[0];
+                    alert(`Connected: ${walletAddress.substring(0, 6)}...${walletAddress.substring(38)}`);
+                    this.innerHTML = `<i class="fas fa-check-circle"></i> CONNECTED`;
+                    this.style.background = "linear-gradient(to right, var(--purple-dark), var(--black))";
+                } else {
+                    alert('Please install MetaMask or another Ethereum wallet!');
+                }
+            } catch (error) {
+                console.error("Error connecting wallet:", error);
+            }
+        });
+    </script>
+</body>
+</html>
