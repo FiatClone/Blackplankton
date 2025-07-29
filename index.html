@@ -1,0 +1,226 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>Black Plankton</title>  
+    <link rel="stylesheet" href="styles.css">  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">  
+    <!-- Add favicon from public/logo.png -->
+    <link rel="icon" href="public/logo.png" type="image/png">
+</head>  
+<body>  
+    <!-- Ink splashes -->  
+    <svg class="ink-splash" style="top: 10%; left: 5%; width: 200px; height: 200px;" viewBox="0 0 200 200">  
+        <path d="M139.5,21.2c15.8,6.7,30.9,18.4,34.7,33.4c3.8,15-3.7,33.4-17.3,48.5c-13.6,15.1-33.4,27-53.1,28.8  
+        c-19.7,1.8-39.4-6.5-52.9-19.7C37.4,99,30.1,80.9,31.7,64.5c1.6-16.4,12.1-31.1,26.9-39.7C73.4,16.2,92.5,13.7,108.6,14  
+        C124.7,14.3,123.7,14.5,139.5,21.2z" fill="#4c1d95" opacity="0.2"/>  
+    </svg>  
+      
+    <svg class="ink-splash" style="bottom: 15%; right: 10%; width: 250px; height: 250px;" viewBox="0 0 200 200">  
+        <path d="M139.5,21.2c15.8,6.7,30.9,18.4,34.7,33.4c3.8,15-3.7,33.4-17.3,48.5c-13.6,15.1-33.4,27-53.1,28.8  
+        c-19.7,1.8-39.4-6.5-52.9-19.7C37.4,99,30.1,80.9,31.7,64.5c1.6-16.4,12.1-31.1,26.9-39.7C73.4,16.2,92.5,13.7,108.6,14  
+        C124.7,14.3,123.7,14.5,139.5,21.2z" fill="#7e22ce" opacity="0.2"/>  
+    </svg>  
+
+    <header class="header">  
+        <div class="logo" id="homeLogo">  
+            <!-- Changed to use logo.png from public folder -->
+            <img src="/logo.png" alt="" style="height: 40px; margin-right: 10px;">
+            <span>THE BLACK PLANKTON</span>  
+        </div>  
+        <button class="menu-toggle" id="menuToggle">  
+            <i class="fas fa-bars"></i>  
+        </button>  
+    </header>  
+      
+    <!-- Sidebar Overlay -->  
+    <div class="overlay" id="overlay"></div>  
+      
+    <!-- Sidebar -->  
+    <aside class="sidebar" id="sidebar">  
+        <ul class="sidebar-menu">  
+            <!-- Added Buy menu item above DEX -->
+            <li>  
+                <a href="components/buy.html" class="menu-item">  
+                    <div>  
+                        <i class="fas fa-shopping-cart menu-icon"></i>  
+                        <span>Buy BP</span>  
+                    </div>  
+                </a>  
+            </li>
+            
+            <li>  
+                <a href="#" class="menu-item" data-menu="plankton">  
+                    <div>  
+                        <i class="fas fa-skull menu-icon"></i>  
+                        <span>The Legend</span>  
+                    </div>  
+                </a>  
+                <div class="submenu-card" id="plankton-submenu">  
+                    <a href="components/pages/chapter.html" class="submenu-card-item">  
+                        <i class="fas fa-book-dead"></i> Black Plankton  
+                    </a>  
+                    <a href="#" class="submenu-card-item">  
+                        <i class="fas fa-book-dead"></i> Comingsoon  
+                    </a>  
+                    <a href="#" class="submenu-card-item">  
+                        <i class="fas fa-book-dead"></i> Comingsoon
+                    </a>  
+                    <a href="#" class="submenu-card-item">  
+                        <i class="fas fa-book-dead"></i> Coningsoon
+                    </a>  
+                </div>  
+            </li>  
+              
+            <li>  
+                <a href="#" class="menu-item" data-menu="swap">  
+                    <div>  
+                        <i class="fas fa-hand-holding-water menu-icon"></i>  
+                        <span>DEX</span>  
+                    </div>  
+                </a>  
+                <div class="submenu-card" id="swap-submenu">  
+                    <a href="components/swap.html" class="submenu-card-item">  
+                        <i class="fas fa-exchange-alt"></i> Swap Tokens  
+                    </a>  
+                    <a href="components/liquidity.html" class="submenu-card-item">  
+                        <i class="fas fa-water"></i> Liquidity Pool  
+                    </a>  
+                    <a href="components/chart.html" class="submenu-card-item">  
+                        <i class="fas fa-chart-line"></i> Charts  
+                    </a>  
+                </div>  
+            </li>  
+              
+            <li>  
+                <a href="#" class="menu-item" data-menu="utility">  
+                    <div>  
+                        <i class="fas fa-skull-crossbones menu-icon"></i>  
+                        <span>Rituals</span>  
+                    </div>  
+                </a>  
+                <div class="submenu-card" id="utility-submenu">  
+                    <a href="components/stake.html" class="submenu-card-item">  
+                        <i class="fas fa-lock"></i> Stake Sacrifices  
+                    </a>  
+                    <a href="#" class="submenu-card-item">  
+                        <i class="fas fa-calendar-alt"></i> Vesting Ceremony  
+                    </a>  
+                    <a href="#" class="submenu-card-item">  
+                        <i class="fas fa-dungeon"></i> Lock Chamber  
+                    </a>  
+                </div>  
+            </li>
+            
+            <li>  
+                <a href="#" class="menu-item" data-menu="airdrop">  
+                    <div>  
+                        <i class="fas fa-parachute-box menu-icon"></i>  
+                        <span>Airdrop</span>  
+                    </div>  
+                </a>  
+                <div class="submenu-card" id="airdrop-submenu">  
+                    <a href="components/comingsoon.html" class="submenu-card-item">  
+                        <i class="fas fa-gift"></i> Claim Rewards  
+                    </a>  
+                    <a href="#" class="submenu-card-item">  
+                        <i class="fas fa-tasks"></i> Complete Tasks  
+                    </a>  
+                    <a href="#" class="submenu-card-item">  
+                        <i class="fas fa-users"></i> Referral Program  
+                    </a>  
+                </div>  
+            </li>  
+              
+            <li>  
+                <a href="#" class="menu-item" data-menu="games">  
+                    <div>  
+                        <i class="fas fa-ghost menu-icon"></i>  
+                        <span>Hauntings</span>  
+                    </div>  
+                </a>  
+                <div class="submenu-card" id="games-submenu">  
+                    <a href="components/pages/caracter.html" class="submenu-card-item">  
+                        <i class="fas fa-mask"></i> LAB  
+                    </a>  
+                    <a href="components/Comingsoon.html" class="submenu-card-item">  
+                        <i class="fas fa-dice"></i> Kraken's Gambit  
+                    </a>  
+                </div>  
+            </li>  
+        </ul>  
+          
+        <div class="sidebar-footer">  
+            <button class="connect-wallet flicker" id="connectWalletBtn">  
+                <i class="fas fa-hand-holding-magic"></i> Summon  
+            </button>  
+              
+            <div class="partner-section">  
+                <h4 class="section-title">Ancient Allies</h4>  
+                <div class="partner-logos">  
+                    <img src="https://inkonchain.com/logo/ink-mark-dark.webp/" alt="inkochain">  
+                    <img src="https://cryptologos.cc/logos/polygon-matic-logo.png" alt="Polygon">  
+                    <img src="https://cryptologos.cc/logos/avalanche-avax-logo.png" alt="Avalanche">  
+                </div>  
+            </div>  
+              
+            <div class="social-media">  
+                <h4 class="section-title">Whispers in the Dark</h4>  
+                <div class="social-icons">  
+                    <a href="https://x.com/black_plankton"><i class="fab fa-twitter"></i></a>  
+                    <a href="https://t.me/blackplanktons"><i class="fab fa-telegram"></i></a>  
+                    <a href="https://discord.gg/4NzbtBF6NJ"><i class="fab fa-discord"></i></a>  
+                    <a href="#"><i class="fas fa-scroll"></i></a>  
+                </div>  
+            </div>  
+        </div>  
+    </aside>  
+      
+    <!-- Wallet Modal -->  
+    <div class="wallet-modal" id="walletModal">  
+        <div class="modal-header">  
+            <h3 class="modal-title">Summon Your Wallet</h3>  
+            <button class="close-modal" id="closeModal">&times;</button>  
+        </div>  
+        <div class="wallet-options">  
+            <div class="wallet-option">  
+                <img src="https://cryptologos.cc/logos/metamask-logo.png" alt="MetaMask" class="wallet-icon">  
+                <span class="wallet-name">MetaMask</span>  
+            </div>  
+            <div class="wallet-option">  
+                <img src="https://cryptologos.cc/logos/trust-wallet-twt-logo.png" alt="Trust Wallet" class="wallet-icon">  
+                <span class="wallet-name">Trust Wallet</span>  
+            </div>  
+            <div class="wallet-option">  
+                <img src="https://cryptologos.cc/logos/walletconnect-logo.png" alt="WalletConnect" class="wallet-icon">  
+                <span class="wallet-name">WalletConnect</span>  
+            </div>  
+            <div class="wallet-option">  
+                <img src="https://cryptologos.cc/logos/coinbase-wallet-cbw-logo.png" alt="Coinbase" class="wallet-icon">  
+                <span class="wallet-name">Coinbase</span>  
+            </div>  
+        </div>  
+    </div>  
+      
+    <main class="main-content">  
+        <div class="iframe-wrapper">  
+          <iframe id="kontenFrame" src="main.html" style="width: 100%; min-height: 100%; border: none;"></iframe>
+        </div>  
+    </main>  
+      
+    <script src="script.js"></script>  
+    <script>
+        document.getElementById('homeLogo').addEventListener('click', function() {
+            document.getElementById('kontenFrame').src = 'main.html';
+        });
+        
+        window.addEventListener('load', function() {
+          const iframe = document.getElementById('kontenFrame');
+          setTimeout(() => {
+            iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 'px';
+          }, 1000);
+        });
+    </script>
+</body>  
+</html>
