@@ -1,0 +1,414 @@
+﻿
+@import url('https://fonts.googleapis.com/css2?family=Creepster&family=Permanent+Marker&family=Bangers&family=Special+Elite&display=swap');
+
+:root {
+  --purple-darkest: #2e1065;
+  --purple-dark: #4c1d95;
+  --purple-medium: #7e22ce;
+  --purple-light: #a855f7;
+  --purple-lightest: #d8b4fe;
+  --black: #121212;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  font-family: 'Special Elite', cursive;
+  background-color: var(--black);
+  color: #f8f8f8;
+  overflow: hidden;
+}
+
+/* Tambahkan ini */
+html {
+  overflow-y: auto;
+}
+body {
+  overflow: visible;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 3.5rem;
+  background-color: var(--black);
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+  border-bottom: 1px solid var(--purple-medium);
+}
+
+.logo {
+  font-family: 'Creepster', cursive;
+  font-size: 1.5rem;
+  color: var(--purple-light);
+  text-shadow: 0 0 10px var(--purple-medium);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.logo:hover {
+  color: white;
+  text-shadow: 0 0 15px var(--purple-light);
+}
+
+.menu-toggle {
+  background: none;
+  border: none;
+  color: var(--purple-light);
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.menu-toggle:hover {
+  transform: scale(1.1);
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 75%;
+  max-width: 280px;
+  height: 100vh;
+  background-color: var(--black);
+  z-index: 1000;
+  padding-top: 3.5rem;
+  border-right: 1px solid var(--purple-medium);
+  transition: left 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar.open {
+  left: 0;
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 1rem;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Bangers', cursive;
+  font-size: 0.95rem;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  background-color: rgba(126, 34, 206, 0.1);
+  color: var(--purple-lightest);
+  text-decoration: none;
+  transition: all 0.3s;
+  border: 1px solid var(--purple-medium);
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+}
+
+.menu-item:hover {
+  background-color: rgba(126, 34, 206, 0.3);
+  color: white;
+  text-shadow: 0 0 5px var(--purple-light);
+}
+
+.menu-icon {
+  margin-right: 10px;
+  width: 20px;
+  text-align: center;
+}
+
+.submenu-card {
+  display: none;
+  background-color: var(--purple-darkest);
+  padding: 0.5rem 1rem;
+  margin-top: 0.25rem;
+}
+
+.submenu-card.open {
+  display: block;
+}
+
+.submenu-card-item {
+  display: block;
+  padding: 0.75rem;
+  margin: 0.25rem 0;
+  color: var(--purple-lightest);
+  text-decoration: none;
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  background-color: rgba(46, 16, 101, 0.5);
+  font-family: 'Bangers', cursive;
+  border: 1px solid var(--purple-medium);
+  transition: all 0.2s;
+}
+
+.submenu-card-item:hover {
+  background-color: var(--purple-medium);
+  color: white;
+  transform: translateX(5px);
+  text-shadow: 0 0 5px white;
+}
+
+.sidebar-footer {
+  padding: 1rem;
+  border-top: 2px solid var(--purple-medium);
+  background-color: rgba(18, 18, 18, 0.9);
+}
+
+.connect-wallet {
+  width: 100%;
+  padding: 0.85rem;
+  background: linear-gradient(to right, var(--purple-dark), var(--purple-medium));
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 0 15px rgba(126, 34, 206, 0.5);
+  font-size: 0.9rem;
+  font-family: 'Bangers', cursive;
+  letter-spacing: 1px;
+}
+
+.connect-wallet:hover {
+  transform: translateY(-1px);
+  background: linear-gradient(to right, var(--purple-medium), var(--purple-light));
+  box-shadow: 0 0 20px var(--purple-light);
+}
+
+.section-title {
+  color: var(--purple-lightest);
+  margin-bottom: 0.75rem;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.partner-logos, .social-icons {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.partner-logos img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  filter: grayscale(100%) brightness(0.8);
+  transition: all 0.3s;
+}
+
+.partner-logos img:hover {
+  filter: grayscale(0%) brightness(1) drop-shadow(0 0 5px var(--purple-light));
+}
+
+.social-icons a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--purple-dark);
+  color: var(--purple-lightest);
+  transition: all 0.3s;
+  font-size: 0.9rem;
+  border: 1px solid var(--purple-medium);
+}
+
+.social-icons a:hover {
+  background-color: var(--purple-medium);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 0 10px var(--purple-light);
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.8);
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.ink-splash {
+  position: absolute;
+  max-width: 30vw;
+  max-height: 30vh;
+  opacity: 0.15;
+  z-index: 1;
+  filter: blur(2px);
+  pointer-events: none;
+}
+
+.main-content {
+  position: fixed;
+  top: 3.5rem;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: 100%;
+}
+
+.iframe-wrapper {
+  width: 100%;
+  min-height: calc(100vh - 3.5rem); /* Kurangi tinggi header */
+  position: relative;
+}
+
+iframe#kontenFrame {
+position: absolute;
+top: 0;
+left: 0;
+  width: 100%;
+  min-height: 100%;
+  border: none;
+  display: block;
+}
+
+.wallet-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 400px;
+  background-color: var(--black);
+  border: 2px solid var(--purple-medium);
+  border-radius: 0.5rem;
+  z-index: 1100;
+  padding: 1.5rem;
+  box-shadow: 0 0 30px rgba(126, 34, 206, 0.5);
+  display: none;
+}
+
+.wallet-modal.active {
+  display: block;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.modal-title {
+  color: var(--purple-lightest);
+  font-family: 'Bangers', cursive;
+  letter-spacing: 1px;
+}
+
+.close-modal {
+  background: none;
+  border: none;
+  color: var(--purple-lightest);
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.close-modal:hover {
+  color: white;
+  transform: scale(1.1);
+}
+
+.wallet-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.wallet-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: var(--purple-darkest);
+  border: 1px solid var(--purple-medium);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.wallet-option:hover {
+  background-color: var(--purple-dark);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(126, 34, 206, 0.3);
+}
+
+.wallet-icon {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  margin-bottom: 0.5rem;
+}
+
+.wallet-name {
+  color: var(--purple-lightest);
+  font-family: 'Bangers', cursive;
+  font-size: 0.9rem;
+}
+
+.flicker {
+  animation: flicker 5s infinite alternate;
+}
+
+@keyframes flicker {
+  0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% {
+    opacity: 0.99;
+    filter: drop-shadow(0 0 10px var(--purple-light));
+  }
+  20%, 21.999%, 63%, 63.999%, 65%, 69.999% {
+    opacity: 0.4;
+    filter: drop-shadow(0 0 5px var(--purple-dark));
+  }
+}
+
+@media (min-width: 768px) {
+  .menu-toggle {
+    display: none;
+  }
+
+  .sidebar {
+    left: 0;
+    width: 240px;
+  }
+
+  .main-content {
+    left: 240px;
+  }
+
+  .overlay {
+    display: none;
+  }
+}
