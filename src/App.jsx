@@ -1,47 +1,52 @@
-import { useAddress } from '@thirdweb-dev/react';
-import { useState } from 'react';
-import Header from './components/Header';
-import Sidebar from './components/Sidebar';
-import Dashboard from './components/Dashboard';
-import Swap from './components/Swap';
-import Stake from './components/Stake';
-import Liquidity from './components/Liquidity';
-import Buy from './components/Buy';
-import Chart from './components/Chart';
-import Comic from './components/Comic';
-import Airdrop from './components/Airdrop';
-import ConnectWallet from './components/ConnectWallet';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Web3Provider } from './contexts/Web3Context';
+import { ThemeProvider } from './contexts/ThemeContext';
+import { ComicProvider } from './contexts/ComicContext';
+import { AirdropProvider } from './contexts/AirdropProvider';
+import Layout from './components/core/Layout';
+import Header from './components/core/Header';
+import Footer from './components/core/Footer';
+import DashboardPage from './pages/DashboardPage';
+import AirdropPage from './pages/AirdropPage';
+import ComicPage from './pages/ComicPage';
+import StakePage from './pages/StakePage';
+import SwapPage from './pages/SwapPage';
+import LiquidityPage from './pages/LiquidityPage';
+import GovernancePage from './pages/GovernancePage';
+import ErrorPage from './pages/ErrorPage';
+import NotificationContainer from './components/ui/Notification/NotificationContainer';
 
-export default function App() {
-  const address = useAddress();
-  const [activeTab, setActiveTab] = useState('dashboard');
-
-  const renderContent = () => {
-    switch(activeTab) {
-      case 'dashboard': return <Dashboard />;
-      case 'swap': return <Swap />;
-      case 'stake': return <Stake />;
-      case 'liquidity': return <Liquidity />;
-      case 'buy': return <Buy />;
-      case 'chart': return <Chart />;
-      case 'comic':
-      case 'comic-browse':
-      case 'comic-upload':
-      case 'comic-myworks': return <Comic activeTab={activeTab.replace('comic-', '')} setActiveTab={setActiveTab} />;
-      case 'airdrop': return <Airdrop />;
-      default: return <Dashboard />;
-    }
-  }
-
+function App() {
   return (
-    <div className="flex flex-col min-h-screen bg-gray-900 text-white">
-      <Header />
-      <div className="flex flex-1">
-        <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
-        <main className="flex-1 p-6 overflow-auto">
-          {address ? renderContent() : <ConnectWallet />}
-        </main>
-      </div>
-    </div>
+    <ThemeProvider>
+      <Web3Provider>
+        <ComicProvider>
+          <AirdropProvider>
+            <Router>
+              <div className="flex flex-col min-h-screen bg-gray-900 text-white">
+                <Header />
+                <Layout>
+                  <Routes>
+                    <Route path="/" element={<DashboardPage />} />
+                    <Route path="/swap" element={<SwapPage />} />
+                    <Route path="/stake" element={<StakePage />} />
+                    <Route path="/liquidity" element={<LiquidityPage />} />
+                    <Route path="/comics" element={<ComicPage />} />
+                    <Route path="/airdrop" element={<AirdropPage />} />
+                    <Route path="/governance" element={<GovernancePage />} />
+                    <Route path="*" element={<ErrorPage />} />
+                  </Routes>
+                </Layout>
+                <Footer />
+                <NotificationContainer />
+              </div>
+            </Router>
+          </AirdropProvider>
+        </ComicProvider>
+      </Web3Provider>
+    </ThemeProvider>
   );
 }
+
+export default App;
