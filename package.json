@@ -12,8 +12,9 @@
     "vercel-build": "npm run build"
   },
   "dependencies": {
-    "@thirdweb-dev/react": "3.16.5", 
-    "@thirdweb-dev/sdk": "3.10.67",
+    "thirdweb-dev/react": "3.16.5", 
+    "thirdweb-dev/sdk": "3.10.67",
+    "heroicons/react": "^2.1.1",
     "ethers": "^5.7.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
