@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Web3Provider } from './contexts/Web3Context';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { ComicProvider } from './contexts/ComicContext';
-import { AirdropProvider } from './contexts/AirdropProvider';
+import { AirdropProvider } from './contexts/AirdropContext';
 import Layout from './components/core/Layout';
 import Header from './components/core/Header';
 import Footer from './components/core/Footer';
