@@ -13,7 +13,7 @@ import ComicPage from './pages/ComicPage';
 import StakePage from './pages/StakePage';
 import SwapPage from './pages/SwapPage';
 import LiquidityPage from './pages/LiquidityPage';
-import GovernancePage from './pages/GovernancePage';
+import GovernancePage from './pages/GavernancePage';
 import ErrorPage from './pages/ErrorPage';
 import NotificationContainer from './components/ui/Notification/NotificationContainer';
 
