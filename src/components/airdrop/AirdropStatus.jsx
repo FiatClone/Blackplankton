@@ -1,4 +1,4 @@
-import { useAirdrop } from '../../../hooks/useAirdrop';
+import { useAirdrop } from '../../hooks/useAirdrop';
 import ProgressBar from '../ui/ProgressBar';
 
 export default function AirdropStatus() {

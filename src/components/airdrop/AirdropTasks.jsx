@@ -1,4 +1,4 @@
-import { useWeb3 } from '../../../contexts/Web3Context';
+import { useWeb3 } from '../../contexts/Web3Context';
 import ProgressBar from '../ui/ProgressBar';
 
 const tasks = [

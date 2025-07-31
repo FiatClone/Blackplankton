@@ -1,4 +1,4 @@
-import { useAirdrop } from '../../../hooks/useAirdrop';
+import { useAirdrop } from '../../hooks/useAirdrop';
 
 export default function AirdropLeaderboard() {
   const { leaderboard, loading } = useAirdrop();
