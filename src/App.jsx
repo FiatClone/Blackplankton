@@ -34,7 +34,7 @@ function App() {
                     <Route path="/liquidity" element={<LiquidityPage />} />
                     <Route path="/comics" element={<ComicPage />} />
                     <Route path="/airdrop" element={<AirdropPage />} />
-                    <Route path="/governance" element={<GovernancePage />} />
+                    <Route path="/gavernance" element={<GavernancePage />} />
                     <Route path="*" element={<ErrorPage />} />
                   </Routes>
                 </Layout>
