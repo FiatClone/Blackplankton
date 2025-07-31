@@ -15,7 +15,7 @@ import SwapPage from './pages/SwapPage';
 import LiquidityPage from './pages/LiquidityPage';
 import GovernancePage from './pages/GavernancePage';
 import ErrorPage from './pages/ErrorPage';
-import NotificationContainer from './components/ui/Notification/NotificationContainer';
+import NotificationContainer from './components/ui/notification/NotificationContainer';
 
 function App() {
   return (
